@@ -1,0 +1,11 @@
+<div class="page-header" style='margin-top: 0px'>
+  <h3>News Feed</h3>
+</div>
+{{> post}}
+{{#if feed.length}}
+  {{#feed}}
+    {{> feeditem}}
+  {{/feed}}
+{{else}}
+  <p>No feed items</p>
+{{/if}}

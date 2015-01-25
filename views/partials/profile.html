@@ -1,0 +1,34 @@
+<h3><span class="fa fa-user"></span> {{profile.displayname}}</h3>
+<p>
+  <strong>email</strong>: {{profile.email}}<br>
+  <strong>seguir</strong>: {{profile.seguirId}}
+</p>
+<p>
+{{#if userOwnsProfile}}
+  <button type="button" class="btn btn-default btn-sm editprofile">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Edit Profile
+  </button>
+{{else}}
+  {{#if relationship.youFollow}}
+  <button type="button" class="btn btn-default btn-sm unfollow">
+    <span class="fa fa-user-times" aria-hidden="true"></span> Un-Follow
+  </button>
+  {{else}}
+  <button type="button" class="btn btn-default btn-sm follow" data-user="{{profile.seguirId}}">
+    <span class="fa fa-user-plus" aria-hidden="true"></span> Follow
+  </button>
+  {{/if}}
+  {{#if relationship.isFriend}}
+  <button type="button" class="btn btn-default btn-sm unfriend">
+    <span class="fa fa-heart-o" aria-hidden="true"></span> Un-Friend
+  </button>
+  {{else}}
+  <button type="button" class="btn btn-default btn-sm friend" data-user="{{profile.seguirId}}">
+    <span class="fa fa-heart" aria-hidden="true"></span> Friend
+  </button>
+  {{/if}}
+  {{#if relationship.theyFollow}}
+    <p>This user is following you.</p>
+  {{/if}}
+{{/if}}
+</p>

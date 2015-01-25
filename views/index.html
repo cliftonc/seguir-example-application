@@ -1,0 +1,39 @@
+<div class='container'>
+		<div class='row'>
+	    <div class="page-header">
+	        <h2><span class="fa fa-share-alt"></span> Seguir Sample Application</h2>
+	    </div>
+	    <p>This application demonstrates how you connect your own application to a Seguir backend, adding social features to your site.  You need to have Seguir running and configured, as per the instructions at <a href='https://github.com/cliftonc/seguir'>cliftonc/seguir</a>.</p>
+	    {{#if user}}
+	    	<div class="col-sm-4">
+	    		<h4>You are logged in as:</h4>
+					<a href='/user/{{user.displayname}}'>
+		        <div class="card card-sm">
+		            <div class="card-content">
+		                <p><span class="fa fa-user"></span> {{user.displayname}}</p>
+		            </div>
+		        </div>
+	        </a>
+	       </div>
+	    {{else}}
+	   		<a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
+	    	<a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
+	    {{/if}}
+	  </div>
+    <div class='row'>
+        <div class="page-header">
+            <h3><span class="fa fa-user-secret"></span> View some existing profiles below:</h2>
+        </div>
+        {{#users}}
+        <div class="col-sm-2">
+	        <a href='/user/{{displayname}}'>
+		        <div class="card">
+		            <div class="card-content">
+		                <p><span class="fa fa-user-secret"></span> {{displayname}}</p>
+		            </div>
+		        </div>
+	        </a>
+	      </div>
+        {{/users}}
+    </div>
+</div>

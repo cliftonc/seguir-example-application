@@ -1,3 +1,8 @@
-module.exports = {
-	'url' : 'mongodb://localhost:27017/seguir-sample-app'
-};
+/**
+ * Don't do this in production
+ */
+var Datastore = require('nedb'),
+    dataFile = 'database.json',
+    db = new Datastore({ filename: dataFile, autoload: true });
+
+module.exports = db;

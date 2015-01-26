@@ -1,16 +1,18 @@
 // load all the things we need
 var LocalStrategy    = require('passport-local').Strategy;
-var User             = require('../app/models/user');
+var db               = require('./database');
 var seguir           = require('../app/seguir');
+var bcrypt   = require('bcrypt-nodejs');
+
 
 module.exports = function(passport) {
 
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user._id);
     });
 
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
+        db.findOne({_id:id}, function(err, user) {
             done(err, user);
         });
     });
@@ -26,7 +28,7 @@ module.exports = function(passport) {
 
         process.nextTick(function() {
 
-            User.findOne({ 'email' :  email }, function(err, user) {
+            db.findOne({ 'email' :  email }, function(err, user) {
 
                 if (err)
                     return done(err);
@@ -34,7 +36,7 @@ module.exports = function(passport) {
                 if (!user)
                     return done(null, false, req.flash('loginMessage', 'No user found.'));
 
-                if (!user.validPassword(password))
+                if (!validPassword(password, user.password))
                     return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
 
                 else
@@ -63,7 +65,8 @@ module.exports = function(passport) {
 
             if (!req.user) {
 
-                User.findOne({ 'email' :  email }, function(err, user) {
+                db.findOne({ 'email' :  email }, function(err, user) {
+
                     if (err)
                         return done(err);
 
@@ -71,25 +74,28 @@ module.exports = function(passport) {
                         return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
                     } else {
 
-                        var newUser            = new User();
+                        var newUser             = {};
 
                         newUser.email           = email;
-                        newUser.password        = newUser.generateHash(password);
+                        newUser.password        = generateHash(password);
                         newUser.displayname     = req.body.displayname;
 
                         // add the user to seguir
-                        seguir.addUser(null, newUser.displayname, function(err, seguirUser) {
+                        seguir.addUser(null, newUser.displayname, {email:newUser.email}, function(err, seguirUser) {
 
                             if(err)
                                 return done(err);
 
                             newUser.seguirId = seguirUser.user;
 
-                            newUser.save(function(err) {
+                            db.insert(newUser, function (err, newDoc) {
+
+                                console.dir(newDoc);
+
                                 if (err)
                                     return done(err);
 
-                                return done(null, newUser);
+                                return done(null, newDoc);
                             });
 
                         });
@@ -107,4 +113,14 @@ module.exports = function(passport) {
 
     }));
 
+};
+
+// generating a hash
+function generateHash(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
+function validPassword(password, userPassword) {
+    return bcrypt.compareSync(password, userPassword);
 };

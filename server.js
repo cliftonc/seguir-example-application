@@ -1,7 +1,6 @@
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 4000;
-var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
 var morgan       = require('morgan');
@@ -12,9 +11,6 @@ var session      = require('express-session');
 var exphbs = require('express-handlebars');
 var path = require('path');
 var absolutePath = path.join.bind(path, __dirname);
-
-var configDB = require('./config/database.js');
-mongoose.connect(configDB.url);
 
 require('./config/passport')(passport);
 

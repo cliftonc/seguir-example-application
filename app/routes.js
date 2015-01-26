@@ -1,10 +1,10 @@
 var seguir = require('./seguir');
-var User   = require('../app/models/user');
+var db     = require('../config/database');
 
 module.exports = function(app, passport) {
 
 	app.get('/', function(req, res) {
-		User.find({}, function(err, users) {
+		db.find({}, function(err, users) {
 			res.render('index', {users: users, user: req.user});
 		});
 	});
@@ -74,5 +74,5 @@ module.exports = function(app, passport) {
 
 
 function getUserByName(displayname, next) {
-	User.findOne({ 'displayname' :  displayname }, next);
+	db.findOne({ 'displayname' :  displayname }, next);
 }

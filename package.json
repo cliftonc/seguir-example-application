@@ -1,6 +1,23 @@
 {
   "name": "seguir-example-application",
   "main": "server.js",
+  "description": "Example application for Seguir self-hosted social network backend and API",
+  "main": "server.js",
+  "keywords": [
+    "social",
+    "api",
+    "follow",
+    "friend",
+    "like",
+    "post",
+    "cassandra"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cliftonc/seguir-example-application.git"
+  },
+  "author": "clifton.cunningham@gmail.com",
+  "license": "MIT",
   "dependencies": {
     "bcrypt-nodejs": "latest",
     "body-parser": "~1.0.0",

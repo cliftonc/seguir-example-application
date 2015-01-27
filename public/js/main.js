@@ -6,7 +6,7 @@ $(function() {
       user: $(this).data('user')
     }
     post('/social/follow', data, function() {
-      $('.follow').prop('value','Un-follow');
+      window.top.location=window.top.location;
     });
   });
 

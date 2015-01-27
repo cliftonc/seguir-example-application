@@ -13,6 +13,8 @@
       </li>
     {{/friendRequests.incoming}}
     </ul>
+  {{else}}
+    <p>No friend requests for you to accept.</p>
   {{/if}}
   {{#if friendRequests.outgoing.length}}
     <h5>You are waiting on:</h5>
@@ -23,6 +25,8 @@
       </li>
     {{/friendRequests.outgoing}}
     </ul>
+  {{else}}
+  <p>You aren't waiting on anyone to accept yours.</p>
   {{/if}}
 </div>
 {{/if}}

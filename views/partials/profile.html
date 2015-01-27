@@ -23,9 +23,16 @@
     <span class="fa fa-heart-o" aria-hidden="true"></span> Un-Friend
   </button>
   {{else}}
-  <button type="button" class="btn btn-default btn-sm friend" data-user="{{profile.seguirId}}">
-    <span class="fa fa-heart" aria-hidden="true"></span> Friend
-  </button>
+    {{#if relationship.isFriendRequestPending}}
+      <!-- Pending Request -->
+    <button type="button" class="btn btn-default btn-sm unfriend">
+      <span class="fa fa-heart-o" aria-hidden="true"></span> Delete Friend Request
+    </button>
+    {{else}}
+    <button type="button" class="btn btn-default btn-sm friend" data-user="{{profile.seguirId}}" data-toggle="modal" data-target="#friendModal">
+      <span class="fa fa-heart" aria-hidden="true"></span> Friend
+    </button>
+    {{/if}}
   {{/if}}
   {{#if relationship.theyFollow}}
     <p>This user is following you.</p>

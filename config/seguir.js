@@ -2,5 +2,5 @@
 module.exports = {
 	host:'http://localhost:3000',
 	appName:'bob',
-	appToken:'f200b8f2-e36c-482c-a5a1-7d9f67bec951'
+	appToken:'5bf426e4-8688-4754-a1b6-42596e3f9cfc'
 };

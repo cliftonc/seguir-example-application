@@ -1,5 +1,6 @@
 var seguir = require('./seguir');
 var db     = require('../config/database');
+var async  = require('async');
 
 module.exports = function(app, passport) {
 
@@ -48,24 +49,50 @@ module.exports = function(app, passport) {
 				seguirId = loggedIn ? req.user.seguirId : null,
 				userId = loggedIn ? req.user._id.toString() : null;
 
-		getUserByName(req.params.displayname, function(err, profile) {
+		function getProfile(next) {
+			 getUserByName(req.params.displayname, next);
+		}
 
-			seguir.getUserRelationship(seguirId, profile.seguirId, function(err, relationship) {
+		function getUserRelationship(profile) {
+			 return function(next) {
+			 	 if(!seguirId) return next();
+			 	 seguir.getUserRelationship(seguirId, profile.seguirId, next);
+			 }
+		}
 
-				seguir.getFeedForUser(seguirId, profile.seguirId, null, 50, function(err, feed) {
+		function getFeed(profile) {
+			return function(next) {
+			   seguir.getFeedForUser(seguirId, profile.seguirId, null, 50, function(err, feed) {
+			   		console.dir(err);
+			   		next(null, feed);
+			   });
+			 }
+		}
 
-					res.render('profile', {
-						feed: feed,
+		function getFriendRequests(profile) {
+			return function(next) {
+				if(seguirId !== profile.seguirId) return next();
+				seguir.getFriendRequests(seguirId, next);
+			}
+		}
+
+		getProfile(function(err, profile) {
+			async.parallel({
+				relationship: getUserRelationship(profile),
+				feed: getFeed(profile),
+				friendRequests: getFriendRequests(profile)
+			}, function(err, result) {
+					var isUserProfile = profile._id.toString() === userId;
+					var viewData = {
+						feed: result.feed,
 						user : req.user,
 						profile: profile,
-						relationship: relationship,
-						userOwnsProfile: profile._id.toString() === userId
-					});
-
-				});
-
+						relationship: result.relationship,
+						userOwnsProfile: isUserProfile,
+						friendRequests: isUserProfile ? result.friendRequests : null
+					};
+					res.render('profile', viewData);
 			});
-
 		});
 
 	});

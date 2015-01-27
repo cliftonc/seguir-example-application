@@ -1,0 +1,21 @@
+{{#if userOwnsProfile}}
+<div class="well">
+  <h4>Friend Requests</h4>
+  {{#if friendRequests.incoming.length}}
+    <h5>You should reply to:</h5>
+    <ul>
+    {{#friendRequests.incoming}}
+      <li>{{user.username}} {{humanize since}}<br/><small>{{message}}</small></li>
+    {{/friendRequests.incoming}}
+    </ul>
+  {{/if}}
+  {{#if friendRequests.outgoing.length}}
+    <h5>You are waiting on:</h5>
+    <ul>
+    {{#friendRequests.outgoing}}
+      <li>{{user_friend.username}} {{humanize since}}<br/><small>{{message}}</small></li>
+    {{/friendRequests.outgoing}}
+    </ul>
+  {{/if}}
+</div>
+{{/if}}

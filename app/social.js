@@ -9,9 +9,9 @@ module.exports = function(app) {
   });
 
   app.post('/social/friend', isLoggedInApi, function(req, res) {
-    seguir.addFriend(req.user.seguirId, req.body.user, Date.now(), function(err, friend) {
+    seguir.addFriendRequest(req.user.seguirId, req.body.user, req.body.message, Date.now(), function(err, friend) {
       res.send(friend);
-    })
+    });
   });
 
   app.post('/social/follow', isLoggedInApi, function(req, res) {

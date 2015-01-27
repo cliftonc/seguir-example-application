@@ -14,6 +14,12 @@ module.exports = function(app) {
     });
   });
 
+  app.post('/social/friend/accept', isLoggedInApi, function(req, res) {
+    seguir.acceptFriendRequest(req.user.seguirId, req.body.friend_request, function(err, friend_request) {
+      res.send(friend_request);
+    });
+  });
+
   app.post('/social/follow', isLoggedInApi, function(req, res) {
     seguir.followUser(req.user.seguirId, req.body.user, Date.now(), function(err, follow) {
       res.send(follow);

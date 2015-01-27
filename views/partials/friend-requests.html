@@ -5,7 +5,12 @@
     <h5>You should reply to:</h5>
     <ul>
     {{#friendRequests.incoming}}
-      <li>{{user.username}} {{humanize since}}<br/><small>{{message}}</small></li>
+      <li>
+        <button type="button" class="btn btn-default btn-sm accept-friend-request" data-friend-request="{{friend_request}}">
+          <span class="fa fa-heart" aria-hidden="true"></span> Accept
+        </button> {{user.username}} {{humanize since}}<br/><small>{{message}}</small>
+
+      </li>
     {{/friendRequests.incoming}}
     </ul>
   {{/if}}
@@ -13,7 +18,9 @@
     <h5>You are waiting on:</h5>
     <ul>
     {{#friendRequests.outgoing}}
-      <li>{{user_friend.username}} {{humanize since}}<br/><small>{{message}}</small></li>
+      <li>
+        {{user_friend.username}} {{humanize since}}<br/><small>{{message}}</small>
+      </li>
     {{/friendRequests.outgoing}}
     </ul>
   {{/if}}

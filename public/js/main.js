@@ -25,7 +25,20 @@ $(function() {
     }
 
     post('/social/friend', data, function() {
-      console.log('Now a friend???');
+      // Cheat and just reload for now
+      window.top.location=window.top.location;
+    });
+
+  });
+
+  $('.accept-friend-request').click(function(e) {
+
+    var data = {
+      friend_request: $(this).data('friend-request')
+    }
+    post('/social/friend/accept', data, function() {
+      // Cheat and just reload for now
+      window.top.location=window.top.location;
     });
 
   });

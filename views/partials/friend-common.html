@@ -1,0 +1,17 @@
+{{#if userOwnsProfile}}
+{{else}}
+<div class="well">
+  <h4>Friends in Common</h4>
+  {{#if relationship.inCommon.length}}
+    <ul>
+    {{#relationship.inCommon}}
+      <li>
+        {{username}}
+      </li>
+    {{/relationship.inCommon}}
+    </ul>
+  {{else}}
+    <p>You don't have any friends in common</p>
+  {{/if}}
+</div>
+{{/if}}

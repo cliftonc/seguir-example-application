@@ -33,7 +33,7 @@ module.exports = function(app) {
   });
 
   app.del('/social/follow/:user', isLoggedInApi, function(req, res) {
-    seguir.removeFollower(req.user.seguirId, req.params.user, function(err, result) {
+    seguir.unFollowUser(req.user.seguirId, req.params.user, function(err, result) {
       res.send(result);
     });
   });

@@ -14,6 +14,12 @@ module.exports = function(app) {
     });
   });
 
+  app.del('/social/friend/:user', isLoggedInApi, function(req, res) {
+    seguir.removeFriend(req.user.seguirId, req.params.user, function(err, result) {
+      res.send(result);
+    });
+  });
+
   app.post('/social/friend/accept', isLoggedInApi, function(req, res) {
     seguir.acceptFriendRequest(req.user.seguirId, req.body.friend_request, function(err, friend_request) {
       res.send(friend_request);
@@ -24,6 +30,12 @@ module.exports = function(app) {
     seguir.followUser(req.user.seguirId, req.body.user, Date.now(), function(err, follow) {
       res.send(follow);
     })
+  });
+
+  app.del('/social/follow/:user', isLoggedInApi, function(req, res) {
+    seguir.removeFollower(req.user.seguirId, req.params.user, function(err, result) {
+      res.send(result);
+    });
   });
 
 };

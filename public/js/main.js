@@ -10,6 +10,40 @@ $(function() {
     });
   });
 
+  $('.unfriend').click(function(e) {
+    var user = $(this).data('user');
+    $.ajax({
+      type:'delete',
+      url:'/social/friend/' + user,
+      success:function() {
+        // Cheat and just reload for now
+        window.top.location=window.top.location;
+      },
+      fail: function(request, err, message) {
+        if(message == 'Forbidden') {
+          document.location = '/login?returnUrl=' + document.location.pathname;
+        }
+      }
+    });
+  });
+
+  $('.unfollow').click(function(e) {
+    var user = $(this).data('user');
+    $.ajax({
+      type:'delete',
+      url:'/social/follow/' + user,
+      success:function() {
+        // Cheat and just reload for now
+        window.top.location=window.top.location;
+      },
+      fail: function(request, err, message) {
+        if(message == 'Forbidden') {
+          document.location = '/login?returnUrl=' + document.location.pathname;
+        }
+      }
+    });
+  });
+
   $('#friendModal').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget)
       var user = button.data('user')

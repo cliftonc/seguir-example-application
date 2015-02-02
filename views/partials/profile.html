@@ -10,7 +10,7 @@
   </button>
 {{else}}
   {{#if relationship.youFollow}}
-  <button type="button" class="btn btn-default btn-sm unfollow">
+  <button type="button" class="btn btn-default btn-sm unfollow" data-user="{{profile.seguirId}}">
     <span class="fa fa-user-times" aria-hidden="true"></span> Un-Follow
   </button>
   {{else}}
@@ -19,7 +19,7 @@
   </button>
   {{/if}}
   {{#if relationship.isFriend}}
-  <button type="button" class="btn btn-default btn-sm unfriend">
+  <button type="button" class="btn btn-default btn-sm unfriend" data-user="{{profile.seguirId}}">
     <span class="fa fa-heart-o" aria-hidden="true"></span> Un-Friend
   </button>
   {{else}}

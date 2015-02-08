@@ -38,7 +38,6 @@ app.use(passport.session());
 app.use(flash());
 
 require('./app/routes.js')(app, passport);
-require('./app/social.js')(app, passport);
 
 app.listen(port);
 console.log('Example Seguir Application running on http://localhost:' + port);

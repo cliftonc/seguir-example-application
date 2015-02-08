@@ -1,5 +1,5 @@
-
 $(function() {
+
 
   $('.follow').click(function(e) {
     var data = {

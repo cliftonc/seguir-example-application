@@ -1,9 +1,14 @@
 var seguir = require('./seguir');
+var seguirMiddleware = require('seguir-express-middleware');
 var db     = require('../config/database');
 var async  = require('async');
 
 module.exports = function(app, passport) {
 
+	// Backend social API
+	app.use('/social', seguirMiddleware(seguir, isLoggedInApi, isLoggedIn));
+
+	// Now our application routes
 	app.get('/', function(req, res) {
 		db.find({}, function(err, users) {
 			res.render('index', {users: users, user: req.user});
@@ -77,6 +82,12 @@ module.exports = function(app, passport) {
 		}
 
 		getProfile(function(err, profile) {
+
+			if(err || !profile) {
+				res.writeHead(404);
+				return res.end('Unable to find user: ' + req.params.displayname);
+			}
+
 			async.parallel({
 				relationship: getUserRelationship(profile),
 				feed: getFeed(profile),
@@ -99,6 +110,20 @@ module.exports = function(app, passport) {
 
 };
 
+function isLoggedInApi(req, res, next) {
+  if (!req.isAuthenticated()) {
+    res.writeHead(403);
+    return res.end("Not logged in!");
+  }
+  next();
+}
+
+function isLoggedIn(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/login')
+  }
+  next();
+}
 
 function getUserByName(displayname, next) {
 	db.findOne({ 'displayname' :  displayname }, next);

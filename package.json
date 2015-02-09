@@ -29,6 +29,7 @@
     "express-session": "~1.0.0",
     "handlebars": "^2.0.0",
     "humanize": "0.0.9",
+    "lodash": "^3.1.0",
     "method-override": "~1.0.0",
     "moment": "^2.9.0",
     "morgan": "~1.0.0",

@@ -1,6 +1,6 @@
 // expose our config directly to our application using module.exports
 module.exports = {
 	host:'http://localhost:3000',
-	appName:'bob',
-	appToken:'5bf426e4-8688-4754-a1b6-42596e3f9cfc'
+	appid:'5a2f7eda-8ae3-4404-822a-74fe36d8063a',
+	appsecret:'0e486cf92c093a005739a382a6b1b8e58a6010b194dab6d0b8dbcca6ab176736'
 };

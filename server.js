@@ -16,8 +16,8 @@ require('./config/passport')(passport);
 
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ strict: true }));
 app.use(serveStatic('public'));
 
 app.engine('html', exphbs({

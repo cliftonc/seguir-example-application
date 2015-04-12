@@ -2,11 +2,12 @@ var seguir = require('./seguir');
 var seguirMiddleware = require('seguir-express-middleware');
 var db     = require('../config/database');
 var async  = require('async');
+var express = require('express');
 
 module.exports = function(app, passport) {
 
 	// Backend social API
-	app.use('/social', seguirMiddleware(seguir, isLoggedInApi, isLoggedIn));
+	app.use('/social', seguirMiddleware(null, express, seguir, isLoggedInApi));
 
 	// Now our application routes
 	app.get('/', function(req, res) {

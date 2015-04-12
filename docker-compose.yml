@@ -1,0 +1,14 @@
+web:
+  build: .
+  links:
+   - api
+  ports:
+   - "4000:4000"
+
+api:
+  image: cliftonc/seguir
+  links:
+   - cassandra
+
+cassandra:
+  image: spotify/cassandra

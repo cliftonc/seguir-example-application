@@ -5,7 +5,24 @@
     <div class="card-footer-item card-footer-left card-footer-time">
         {{humanize date}}
     </div>
-    <div class="card-footer-item card-footer-right  card-footer-author">
+    {{#if isprivate}}
+    <div class="card-footer-item card-footer-left card-footer-time">
+    <span class="fa fa-users" aria-hidden="true"></span> Friends Only
+    </div>
+    {{/if}}
+    {{#if ispersonal}}
+    <div class="card-footer-item card-footer-left card-footer-time">
+    <span class="fa fa-eye-slash" aria-hidden="true"></span> You Only
+    </div>
+    {{/if}}
+    {{#if isPost}}
+      {{#if isUsersItem}}
+    <div class="seguir-delete-post card-footer-item card-footer-left btn" data-post="{{post}}">
+      | <span class="fa fa-trash-o" aria-hidden="true"></span> Delete Post
+    </div>
+      {{/if}}
+    {{/if}}
+    <div class="card-footer-item card-footer-right card-footer-author">
         By: <a href='/user/{{user.username}}'>{{user.username}}</a>
     </div>
 </div>

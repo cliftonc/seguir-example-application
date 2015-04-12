@@ -1,18 +1,20 @@
 {{#if userOwnsProfile}}
-<form class="form-horizontal" action="/social/post" method="post">
+<form class="seguir-post-form form-horizontal" action="/social/post" method="post">
     <div class="form-group">
         <div class="col-sm-12">
-          <textarea class="form-control" rows="3" name="content" placeholder="Enter a new message for your feed here ..."></textarea>
+          <textarea class="form-control seguir-post-content" rows="3" name="content" placeholder="Enter a new message for your feed here ..."></textarea>
         </div>
     </div>
     <div class="form-group">
       <div class="col-sm-12">
         <label style='font-weight: normal;'>
-            <input type="checkbox" name="isprivate"/> Keep Private
+            <input type="checkbox" class="seguir-post-isprivate" name="isprivate"/> Friends Only
         </label>
-        <button type="submit" class="btn btn-warning btn-sm pull-right"><span class='fa fa-post'></span> Post Message</button>
+        <label style='font-weight: normal;'>
+            <input type="checkbox" class="seguir-post-ispersonal" name="ispersonal"/> You Only
+        </label>
+        <button type="submit" class="seguir-post btn btn-warning btn-sm pull-right"><span class='fa fa-post'></span> Post Message</button>
         </div>
-        <input type="hidden" name="returnUrl" value="/user/{{user.displayname}}"/>
     </div>
 </form>
 {{/if}}

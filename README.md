@@ -15,6 +15,3 @@ If you would like to download the code and try it for yourself:
 To use this application you need to have installed seguir [https://github.com/cliftonc/seguir](https://github.com/cliftonc/seguir).
 
 To create an application token, use the command line tool after installing seguir, and then enter the details in the configuration file in this project.
-
-#### Credits
-Application structure taken from the very good scotch.io template: [Original Source](https://github.com/scotch-io/easy-node-authentication/)

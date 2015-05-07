@@ -1,24 +1,24 @@
 <!-- Modal -->
-<div class="modal fade" id="friendModal" tabindex="-1" role="dialog" aria-labelledby="friendModalLabel" aria-hidden="true">
+<div class="modal fade" id="js-seguir-friendModal" tabindex="-1" role="dialog" aria-labelledby="friendModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="friendModal">Friend Request</h4>
+                <h4 class="modal-title">Friend Request</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" class='friend-request-form'>
+                <form class="form-horizontal" class='js-seguir-friend-request-form'>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <textarea class="form-control friend-request-message" rows="3" name="message" placeholder="Enter a message:"></textarea>
+                            <textarea class="form-control js-seguir-friend-request-message" rows="3" name="message" placeholder="Enter a message:"></textarea>
                         </div>
                     </div>
-                    <input type="hidden" name="user" class="friend-request-user" />
+                    <input name="user" class="js-seguir-friend-request-user" />
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary friend-request" data-dismiss="modal">Make Request</button>
+                <button type="button" class="btn btn-primary js-seguir-friend-request" data-dismiss="modal">Make Request</button>
             </div>
         </div>
     </div>

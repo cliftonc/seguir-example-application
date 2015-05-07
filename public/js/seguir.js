@@ -1,7 +1,6 @@
 $(function() {
 
-
-  $('.seguir-follow').click(function(e) {
+  $('.js-seguir-follow').click(function(e) {
     var data = {
       user: $(this).data('user')
     }
@@ -10,7 +9,7 @@ $(function() {
     });
   });
 
-  $('.seguir-unfriend').click(function(e) {
+  $('.js-seguir-unfriend').click(function(e) {
     var user = $(this).data('user');
     $.ajax({
       type:'delete',
@@ -27,7 +26,7 @@ $(function() {
     });
   });
 
-  $('.seguir-unfollow').click(function(e) {
+  $('.js-seguir-unfollow').click(function(e) {
     var user = $(this).data('user');
     $.ajax({
       type:'delete',
@@ -44,29 +43,25 @@ $(function() {
     });
   });
 
-  $('#seguir-friendModal').on('show.bs.modal', function(event) {
+  $('#js-seguir-friendModal').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget)
       var user = button.data('user')
       var modal = $(this)
-      modal.find('input.friend-request-user').val(user);
+      modal.find('input.js-seguir-friend-request-user').val(user);
   });
 
-  $('.seguir-friend-request').click(function(e) {
-
+  $('.js-seguir-friend-request').click(function(e) {
     var data = {
-      user: $('#friendModal input.friend-request-user').val(),
-      message: $('#friendModal textarea.friend-request-message').val() || ''
+      user: $('#js-seguir-friendModal input.js-seguir-friend-request-user').val(),
+      message: $('#js-seguir-friendModal textarea.js-seguir-friend-request-message').val() || ''
     }
-
     post('/social/friend', data, function() {
       // Cheat and just reload for now
       window.top.location=window.top.location;
     });
-
   });
 
-  $('.seguir-accept-friend-request').click(function(e) {
-
+  $('.js-seguir-accept-friend-request').click(function(e) {
     var data = {
       friend_request: $(this).data('friend-request')
     }
@@ -74,27 +69,22 @@ $(function() {
       // Cheat and just reload for now
       window.top.location=window.top.location;
     });
-
   });
 
-  $('.seguir-post').click(function(e) {
-
+  $('.js-seguir-post').click(function(e) {
     e.preventDefault();
-
     var data = {
-      content: $('.seguir-post-content').val() || '',
-      isprivate: $('.seguir-post-isprivate').is(':checked'),
-      ispersonal: $('.seguir-post-ispersonal').is(':checked')
+      content: $('.js-seguir-post-content').val() || '',
+      isprivate: $('.js-seguir-post-isprivate').is(':checked'),
+      ispersonal: $('.js-seguir-post-ispersonal').is(':checked')
     }
-
     post('/social/post', data, function() {
       // Cheat and just reload for now
       window.top.location=window.top.location;
     });
-
   });
 
-  $('.seguir-delete-post').click(function(e) {
+  $('.js-seguir-delete-post').click(function(e) {
     var post = $(this).data('post');
     $.ajax({
       type:'delete',
@@ -109,7 +99,6 @@ $(function() {
         }
       }
     });
-
   });
 
   function post(url, data, success) {

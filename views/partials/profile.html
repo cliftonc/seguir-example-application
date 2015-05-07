@@ -10,26 +10,26 @@
   </button>
 {{else}}
   {{#if relationship.youFollow}}
-  <button type="button" class="btn btn-default btn-sm unfollow" data-user="{{profile.seguirId}}">
+  <button type="button" class="btn btn-default btn-sm js-seguir-unfollow" data-user="{{profile.seguirId}}">
     <span class="fa fa-user-times" aria-hidden="true"></span> Un-Follow
   </button>
   {{else}}
-  <button type="button" class="btn btn-default btn-sm follow" data-user="{{profile.seguirId}}">
+  <button type="button" class="btn btn-default btn-sm js-seguir-follow" data-user="{{profile.seguirId}}">
     <span class="fa fa-user-plus" aria-hidden="true"></span> Follow
   </button>
   {{/if}}
   {{#if relationship.isFriend}}
-  <button type="button" class="btn btn-default btn-sm unfriend" data-user="{{profile.seguirId}}">
+  <button type="button" class="btn btn-default btn-sm js-seguir-unfriend" data-user="{{profile.seguirId}}">
     <span class="fa fa-heart-o" aria-hidden="true"></span> Un-Friend
   </button>
   {{else}}
     {{#if relationship.isFriendRequestPending}}
       <!-- Pending Request -->
-    <button type="button" class="btn btn-default btn-sm unfriend">
+    <button type="button" class="btn btn-default btn-sm js-seguir-unfriend">
       <span class="fa fa-heart-o" aria-hidden="true"></span> Delete Friend Request
     </button>
     {{else}}
-    <button type="button" class="btn btn-default btn-sm friend" data-user="{{profile.seguirId}}" data-toggle="modal" data-target="#friendModal">
+    <button type="button" class="btn btn-default btn-sm js-seguir-friend" data-user="{{profile.seguirId}}" data-toggle="modal" data-target="#js-seguir-friendModal">
       <span class="fa fa-heart" aria-hidden="true"></span> Friend
     </button>
     {{/if}}

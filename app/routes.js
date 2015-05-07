@@ -7,7 +7,7 @@ var express = require('express');
 module.exports = function(app, passport) {
 
 	// Backend social API
-	app.use('/social', seguirMiddleware(null, express, seguir, isLoggedInApi));
+	app.use('/social', seguirMiddleware({}, express, seguir, isLoggedInApi));
 
 	// Now our application routes
 	app.get('/', function(req, res) {
@@ -103,6 +103,8 @@ module.exports = function(app, passport) {
 						userOwnsProfile: isUserProfile,
 						friendRequests: isUserProfile ? result.friendRequests : null
 					};
+
+					console.dir(viewData);
 					res.render('profile', viewData);
 			});
 		});

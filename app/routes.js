@@ -96,15 +96,13 @@ module.exports = function(app, passport) {
 			}, function(err, result) {
 					var isUserProfile = profile._id.toString() === userId;
 					var viewData = {
-						feed: result.feed,
+						feed: result.feed.feed,
 						user : req.user,
 						profile: profile,
 						relationship: result.relationship,
 						userOwnsProfile: isUserProfile,
 						friendRequests: isUserProfile ? result.friendRequests : null
 					};
-
-					console.dir(viewData);
 					res.render('profile', viewData);
 			});
 		});
